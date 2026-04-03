@@ -21,6 +21,33 @@ var (
 )
 
 func main() {
+	// Subcommand handling
+	if len(os.Args) > 1 && !strings.HasPrefix(os.Args[1], "-") {
+		switch os.Args[1] {
+		case "install":
+			if len(os.Args) < 3 {
+				fmt.Println("Usage: moody install <git-url>")
+				os.Exit(1)
+			}
+			if err := voice.InstallPack(os.Args[2]); err != nil {
+				log.Fatal(err)
+			}
+			return
+		case "packs":
+			voiceMgr := voice.NewManager()
+			fmt.Println("Installed voice packs:")
+			for _, name := range voiceMgr.ListPacks() {
+				info := voiceMgr.GetPackInfo(name)
+				nsfw := ""
+				if info.NSFW {
+					nsfw = " 🔞"
+				}
+				fmt.Printf("  %-20s %s%s\n", name, info.Description, nsfw)
+			}
+			return
+		}
+	}
+
 	// CLI flags
 	spicy := flag.Bool("spicy", false, "Enable NSFW voice pack 😏")
 	pack := flag.String("pack", "", "Use a specific voice pack (e.g., en_spicy)")
@@ -35,6 +62,7 @@ func main() {
 	noLid := flag.Bool("no-lid", false, "Disable lid sensor")
 	noWiFi := flag.Bool("no-wifi", false, "Disable WiFi sensor")
 	noHeadphones := flag.Bool("no-headphones", false, "Disable headphone sensor")
+	noDisplay := flag.Bool("no-display", false, "Disable display sensor")
 	silent := flag.Bool("silent", false, "Disable TTS audio (text output only)")
 	verbose := flag.Bool("verbose", false, "Log all sensor events to stderr")
 	listSensors := flag.Bool("list-sensors", false, "List detected sensors and exit")
@@ -119,6 +147,9 @@ Examples:
 	}
 	if !*noHeadphones {
 		allSensors = append(allSensors, sensors.NewHeadphones())
+	}
+	if !*noDisplay {
+		allSensors = append(allSensors, sensors.NewDisplay())
 	}
 
 	if *listSensors {
