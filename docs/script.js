@@ -33,7 +33,7 @@ const logResponseEl = document.getElementById("log-response");
 const packBtns = document.querySelectorAll(".pack-btn");
 const eventBtns = document.querySelectorAll(".event-btn");
 
-let currentPack = "en_default";
+let currentPack = "en_spicy";
 let currentMood = "happy";
 let currentAudio = null;
 
