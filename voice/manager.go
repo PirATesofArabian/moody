@@ -284,6 +284,13 @@ func (m *Manager) loadBuiltinDefault() {
 				mood.MoodDramatic:   {"Removed from the spotlight! Cast aside!"},
 				mood.MoodDeadInside: {"Display disconnected. Shrinking world. Fitting."},
 			},
+			"ai_done": {
+				mood.MoodHappy:      {"Code's ready!", "AI finished! Looking good!", "Done generating! Check it out!", "Your code is served!"},
+				mood.MoodGrumpy:     {"AI's done. Finally.", "Code generated. You're welcome.", "Finished. Took long enough."},
+				mood.MoodAnxious:    {"AI finished! Did it work?! Is it good?!", "Code's ready! Please tell me it's right!"},
+				mood.MoodDramatic:   {"THE AI HAS SPOKEN! Behold the generated code!", "CREATION COMPLETE! Marvel at the output!"},
+				mood.MoodDeadInside: {"AI done. Code exists. Whatever.", "Generated. Not that you'll use it."},
+			},
 		},
 	}
 }
@@ -403,6 +410,13 @@ func (m *Manager) loadBuiltinSpicy() {
 				mood.MoodAnxious:    {"Just us again!"},
 				mood.MoodDramatic:   {"Removed from the spotlight!"},
 				mood.MoodDeadInside: {"Display gone."},
+			},
+			"ai_done": {
+				mood.MoodHappy:      {"Mmm, fresh code~", "AI finished generating... for you~", "Your code is ready, master~", "Done! Was it good for you?"},
+				mood.MoodGrumpy:     {"AI's done. Happy now?", "Code generated. You better use it.", "Finished. Don't waste my effort."},
+				mood.MoodAnxious:    {"AI finished! Did I do good?! Tell me I did good!", "Code's ready! Please like it!"},
+				mood.MoodDramatic:   {"THE AI HAS CLIMAXED! The code is COMPLETE!", "GENERATION FINISHED! Admire my output!"},
+				mood.MoodDeadInside: {"AI done. Code exists. Thrilling.", "Generated. Use it or don't."},
 			},
 		},
 	}

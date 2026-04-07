@@ -63,6 +63,7 @@ func main() {
 	noWiFi := flag.Bool("no-wifi", false, "Disable WiFi sensor")
 	noHeadphones := flag.Bool("no-headphones", false, "Disable headphone sensor")
 	noDisplay := flag.Bool("no-display", false, "Disable display sensor")
+	noAI := flag.Bool("no-ai", false, "Disable AI IDE monitoring")
 	silent := flag.Bool("silent", false, "Disable TTS audio (text output only)")
 	verbose := flag.Bool("verbose", false, "Log all sensor events to stderr")
 	listSensors := flag.Bool("list-sensors", false, "List detected sensors and exit")
@@ -150,6 +151,9 @@ Examples:
 	}
 	if !*noDisplay {
 		allSensors = append(allSensors, sensors.NewDisplay())
+	}
+	if !*noAI {
+		allSensors = append(allSensors, sensors.NewAI(*verbose))
 	}
 
 	if *listSensors {

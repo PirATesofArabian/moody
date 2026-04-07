@@ -27,6 +27,7 @@ const (
 	EventWiFiBack                      // WiFi reconnected
 	EventDisplayIn                     // External display connected
 	EventDisplayOut                    // External display disconnected
+	EventAIDone                        // AI finished generating code
 )
 
 // EventName returns a string identifier for voice pack lookups
@@ -47,6 +48,7 @@ func EventName(e EventType) string {
 		EventWiFiBack:     "wifi_back",
 		EventDisplayIn:    "display_in",
 		EventDisplayOut:   "display_out",
+		EventAIDone:       "ai_done",
 	}
 	if n, ok := names[e]; ok {
 		return n
@@ -72,6 +74,7 @@ func EventLabel(e EventType) string {
 		EventWiFiBack:     "WiFi reconnected",
 		EventDisplayIn:    "Display connected",
 		EventDisplayOut:   "Display disconnected",
+		EventAIDone:       "AI finished",
 	}
 	if l, ok := labels[e]; ok {
 		return l
@@ -110,6 +113,7 @@ var impacts = map[EventType]moodImpact{
 	EventWiFiBack:     {+0.10, +0.05, +0.05},
 	EventDisplayIn:    {+0.05, +0.05, +0.02},
 	EventDisplayOut:   {-0.03, -0.02, 0},
+	EventAIDone:       {+0.10, +0.05, +0.05}, // AI finishing makes Mac happy!
 }
 
 // Engine manages mood state and processes events
